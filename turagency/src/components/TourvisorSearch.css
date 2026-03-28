@@ -1,0 +1,59 @@
+.tourvisor-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+/* Стили для форм и результатов Турвизора */
+.tourvisor-container :global(.tv-search-form) {
+  margin-bottom: 30px;
+}
+
+.tourvisor-container :global(input),
+.tourvisor-container :global(select),
+.tourvisor-container :global(button) {
+  font-size: 16px;
+  padding: 12px;
+  margin: 5px;
+  border-radius: 8px;
+  border: none;
+}
+
+.tourvisor-container :global(button) {
+  background: #ff6b6b;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.tourvisor-container :global(button:hover) {
+  transform: scale(1.05);
+  background: #ff5252;
+}
+
+/* Стили для результатов поиска */
+.tourvisor-container :global(.tv-results) {
+  margin-top: 30px;
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  color: #333;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .tourvisor-container {
+    padding: 10px;
+  }
+  
+  .tourvisor-container :global(input),
+  .tourvisor-container :global(select),
+  .tourvisor-container :global(button) {
+    width: 100%;
+    margin: 5px 0;
+  }
+}

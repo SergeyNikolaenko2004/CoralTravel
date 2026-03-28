@@ -1,0 +1,134 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.app {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.block {
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.block-content {
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+  width: 100%;
+}
+
+/* Блок 1 */
+.block-1 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+/* Блок 2 */
+.block-2 {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+}
+
+/* Блок 3 */
+.block-3 {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+}
+
+h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 20px;
+  opacity: 0.9;
+}
+
+/* Адаптивность для планшетов */
+@media (max-width: 1024px) {
+  .block-content {
+    padding: 30px;
+  }
+  
+  h1 {
+    font-size: 40px;
+  }
+  
+  p {
+    font-size: 18px;
+  }
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  .block {
+    padding: 15px;
+  }
+  
+  .block-content {
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 32px;
+    margin-bottom: 15px;
+  }
+  
+  p {
+    font-size: 16px;
+  }
+}
+
+/* Адаптивность для маленьких мобильных устройств */
+@media (max-width: 480px) {
+  .block {
+    padding: 10px;
+  }
+  
+  .block-content {
+    padding: 15px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+  
+  p {
+    font-size: 14px;
+  }
+}
+
+/* Состояние активного поиска */
+.block.search-active {
+  overflow-y: auto;
+  scroll-snap-align: none;
+}
+
+.block.search-active .block-content {
+  height: auto;
+  min-height: 100vh;
+}
+
+/* Для обычного состояния */
+.block:not(.search-active) {
+  overflow: hidden;
+}
