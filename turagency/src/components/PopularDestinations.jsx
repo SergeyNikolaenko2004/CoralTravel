@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import './PopularDestinations.css';
 import AngleImage from '/src/assets/Angle.png';
 
@@ -26,22 +26,26 @@ const destinations = [
 function PopularDestinations({ onCountryChange }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const totalPages = destinations.length;
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+  const mouseStartX = useRef(0);
+  const isDragging = useRef(false);
 
   const nextSlide = () => {
     const newIndex = (currentIndex + 1) % totalPages;
     setCurrentIndex(newIndex);
-    onCountryChange(newIndex); // Передаем индекс родителю
+    onCountryChange(newIndex);
   };
 
   const prevSlide = () => {
     const newIndex = (currentIndex - 1 + totalPages) % totalPages;
     setCurrentIndex(newIndex);
-    onCountryChange(newIndex); // Передаем индекс родителю
+    onCountryChange(newIndex);
   };
 
   const goToPage = (pageIndex) => {
     setCurrentIndex(pageIndex);
-    onCountryChange(pageIndex); // Передаем индекс родителю
+    onCountryChange(pageIndex);
   };
 
   const scrollToSearch = () => {
@@ -49,6 +53,58 @@ function PopularDestinations({ onCountryChange }) {
     if (searchBlock) {
       searchBlock.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  // Обработчики для свайпов на мобильных
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const swipeDistance = touchEndX.current - touchStartX.current;
+    const minSwipeDistance = 50;
+
+    if (Math.abs(swipeDistance) > minSwipeDistance) {
+      if (swipeDistance > 0) {
+        prevSlide();
+      } else {
+        nextSlide();
+      }
+    }
+    
+    // Сброс
+    touchStartX.current = 0;
+    touchEndX.current = 0;
+  };
+
+  // Обработчики для drag мышкой
+  const handleMouseDown = (e) => {
+    isDragging.current = true;
+    mouseStartX.current = e.clientX;
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging.current) return;
+    const mouseEndX = e.clientX;
+    const dragDistance = mouseEndX - mouseStartX.current;
+    const minDragDistance = 50;
+
+    if (Math.abs(dragDistance) > minDragDistance) {
+      if (dragDistance > 0) {
+        prevSlide();
+      } else {
+        nextSlide();
+      }
+      isDragging.current = false;
+    }
+  };
+
+  const handleMouseUp = () => {
+    isDragging.current = false;
   };
 
   const currentDestination = destinations[currentIndex];
@@ -65,7 +121,16 @@ function PopularDestinations({ onCountryChange }) {
       };
 
   return (
-    <div className="popular-destinations">
+    <div 
+      className="popular-destinations"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
+    >
       {/* Верхняя часть 3/4 с фоном страны */}
       <div className="top-section" style={topSectionStyle}>
         {/* Стрелки листания */}

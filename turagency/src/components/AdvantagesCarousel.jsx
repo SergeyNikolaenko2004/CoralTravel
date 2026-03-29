@@ -1,42 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import './AdvantagesCarousel.css';
+import AngleImage from '/src/assets/Angle.png';
 
 const advantages = [
   {
     id: 1,
     title: 'Лучшие цены',
-    description: 'Гарантируем самые выгодные предложения от ведущих туроператоров',
-    icon: '💰'
+    description: 'даыввддвдывд',
   },
   {
     id: 2,
     title: 'Надежные партнеры',
-    description: 'Работаем только с проверенными туроператорами и отелями',
-    icon: '🤝'
+    description: 'фгфгфгфгфггфгфгф',
   },
   {
     id: 3,
     title: 'Индивидуальный подход',
-    description: 'Подберем тур под ваши пожелания и бюджет',
-    icon: '🎯'
-  },
-  {
-    id: 4,
-    title: 'Поддержка 24/7',
-    description: 'Всегда на связи во время вашего отдыха',
-    icon: '📞'
-  },
-  {
-    id: 5,
-    title: 'Быстрое бронирование',
-    description: 'Подтверждение тура в течение 30 минут',
-    icon: '⚡'
-  },
-  {
-    id: 6,
-    title: 'Рассрочка без %',
-    description: 'Оплачивайте тур частями без переплат',
-    icon: '💳'
+    description: 'пупупупупупуп',
   }
 ];
 
@@ -50,6 +30,10 @@ const countryBackgrounds = [
 function AdvantagesCarousel({ currentCountry }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const totalCards = advantages.length;
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+  const mouseStartX = useRef(0);
+  const isDragging = useRef(false);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % totalCards);
@@ -63,6 +47,57 @@ function AdvantagesCarousel({ currentCountry }) {
     setCurrentIndex(index);
   };
 
+  // Обработчики для свайпов на мобильных
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const swipeDistance = touchEndX.current - touchStartX.current;
+    const minSwipeDistance = 50;
+
+    if (Math.abs(swipeDistance) > minSwipeDistance) {
+      if (swipeDistance > 0) {
+        prevSlide();
+      } else {
+        nextSlide();
+      }
+    }
+    
+    touchStartX.current = 0;
+    touchEndX.current = 0;
+  };
+
+  // Обработчики для drag мышкой
+  const handleMouseDown = (e) => {
+    isDragging.current = true;
+    mouseStartX.current = e.clientX;
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging.current) return;
+    const mouseEndX = e.clientX;
+    const dragDistance = mouseEndX - mouseStartX.current;
+    const minDragDistance = 50;
+
+    if (Math.abs(dragDistance) > minDragDistance) {
+      if (dragDistance > 0) {
+        prevSlide();
+      } else {
+        nextSlide();
+      }
+      isDragging.current = false;
+    }
+  };
+
+  const handleMouseUp = () => {
+    isDragging.current = false;
+  };
+
   // Получаем предыдущую, текущую и следующую карточки
   const prevIndex = (currentIndex - 1 + totalCards) % totalCards;
   const nextIndex = (currentIndex + 1) % totalCards;
@@ -71,7 +106,7 @@ function AdvantagesCarousel({ currentCountry }) {
   const currentCard = advantages[currentIndex];
   const nextCard = advantages[nextIndex];
 
-  // Определяем стиль фона в зависимости от выбранной страны
+  // Определяем стиль фона
   const backgroundImage = countryBackgrounds[currentCountry];
   const containerStyle = backgroundImage
     ? {
@@ -85,10 +120,19 @@ function AdvantagesCarousel({ currentCountry }) {
       };
 
   return (
-    <div className="advantages-container" style={containerStyle}>
+    <div 
+      className="advantages-container" 
+      style={containerStyle}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
+    >
       <div className="advantages-content">
         <div className="carousel-wrapper">
-          {/* Стрелки листания как в первом блоке */}
           <button className="carousel-arrow prev" onClick={prevSlide}>
             <svg className="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <polyline points="15 18 9 12 15 6"></polyline>
@@ -101,22 +145,19 @@ function AdvantagesCarousel({ currentCountry }) {
             </svg>
           </button>
 
-          {/* Карусель карточек - только 3 карточки */}
           <div className="carousel-container">
             <div className="carousel-track">
               {/* Левая карточка */}
               <div className="carousel-card card-left">
                 <div className="advantage-card">
-                  <div className="card-icon">{prevCard.icon}</div>
                   <h3 className="card-title">{prevCard.title}</h3>
                   <p className="card-description">{prevCard.description}</p>
                 </div>
               </div>
               
-              {/* Центральная карточка (активная, выше всех) */}
+              {/* Центральная карточка */}
               <div className="carousel-card card-center">
                 <div className="advantage-card active">
-                  <div className="card-icon">{currentCard.icon}</div>
                   <h3 className="card-title">{currentCard.title}</h3>
                   <p className="card-description">{currentCard.description}</p>
                 </div>
@@ -125,7 +166,6 @@ function AdvantagesCarousel({ currentCountry }) {
               {/* Правая карточка */}
               <div className="carousel-card card-right">
                 <div className="advantage-card">
-                  <div className="card-icon">{nextCard.icon}</div>
                   <h3 className="card-title">{nextCard.title}</h3>
                   <p className="card-description">{nextCard.description}</p>
                 </div>
@@ -133,7 +173,6 @@ function AdvantagesCarousel({ currentCountry }) {
             </div>
           </div>
           
-          {/* Точки навигации */}
           <div className="dots-container">
             {advantages.map((_, idx) => (
               <button
@@ -145,6 +184,8 @@ function AdvantagesCarousel({ currentCountry }) {
           </div>
         </div>
       </div>
+      {/* Картинка в правом нижнем углу */}
+      <img src={AngleImage} alt="Angle" className="angle-image-advantages" />
     </div>
   );
 }

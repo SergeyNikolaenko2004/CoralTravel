@@ -28,15 +28,15 @@ function Header() {
         <div className="header-right">
           {/* Социальные иконки */}
           <div className="social-icons">
-            <a href="https://t.me/coraltravel" target="_blank" rel="noopener noreferrer" className="social-circle">
+            <a href="https://t.me/irkcoral" target="_blank" rel="noopener noreferrer" className="social-circle">
               <img src={TelegramLogo} alt="Telegram" className="social-icon-img" />
             </a>
             
-            <a href="https://instagram.com/coraltravel" target="_blank" rel="noopener noreferrer" className="social-circle">
+            <a href="https://www.instagram.com/coral_travelirk?igsh=NDlkZ3RhaGh6Y3Ex&utm_source=ig_contact_invite" target="_blank" rel="noopener noreferrer" className="social-circle">
               <img src={InstagramLogo} alt="Instagram" className="social-icon-img" />
             </a>
             
-            <a href="https://m.me/coraltravel" target="_blank" rel="noopener noreferrer" className="social-circle">
+            <a href="https://max.ru/id381016235739_biz" target="_blank" rel="noopener noreferrer" className="social-circle">
               <img src={MaxLogo} alt="Messenger" className="social-icon-img" />
             </a>
           </div>

@@ -8,7 +8,12 @@ function Footer({ show }) {
         <div className="footer-left">
           <div className="contact-item">
             <span className="contact-label">Телефон:</span>
-            <a href="tel:+78001234567" className="contact-value">8 (800) 123-45-67</a>
+            <a href="tel:+78001234567" className="contact-value">+7 (392) 236 64 64</a>
+            <a href="tel:+78001234567" className="contact-value">+7 (902) 176 63 72</a>
+          </div>
+          <div className="contact-item">
+            <span className="contact-label">Почта:</span>
+            <span className="contact-value">irkcoral@mail.ru</span>
           </div>
           <div className="contact-item">
             <span className="contact-label">График работы:</span>
@@ -28,7 +33,7 @@ function Footer({ show }) {
         <div className="footer-right">
           <div className="address-wrapper">
             <div className="address-item">
-              <span className="address-text">г. Иркутск, ул. Култукская, 18, Coral Travel</span>
+              <span className="address-text">г. Иркутск, ул. Култукская, д. 18 Coral Travel</span>
             </div>
             <div className="map-container">
               <iframe 

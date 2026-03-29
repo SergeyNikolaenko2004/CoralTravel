@@ -25,7 +25,6 @@ function TourvisorSearch({ currentCountry, onSearchActive }) {
     const script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = '//tourvisor.ru/module/init.js';
-    script.charset = 'utf-8';
     document.head.appendChild(script);
 
     // Сообщаем родителю, что поиск активен
