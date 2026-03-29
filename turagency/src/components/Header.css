@@ -1,0 +1,168 @@
+@import './styles/variables.css';
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--header-bg);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-sm);
+  padding: 12px 0;
+}
+
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Социальные иконки */
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.social-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--btn-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.social-circle:hover {
+  transform: translateY(-3px);
+  background: var(--btn-primary-hover);
+  box-shadow: 0 4px 12px rgba(241, 139, 76, 0.4);
+}
+
+.social-icon-img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* Кнопка оставить заявку */
+.application-btn {
+  background: var(--btn-primary);
+  color: var(--text-white);
+  border: none;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  box-shadow: 0 2px 8px rgba(241, 139, 76, 0.3);
+  white-space: nowrap;
+}
+
+.application-btn:hover {
+  background: var(--btn-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(241, 139, 76, 0.4);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .header {
+    padding: 10px 0;
+  }
+  
+  .header-container {
+    padding: 0 12px;
+  }
+  
+  .logo-img {
+    height: 32px;
+  }
+  
+  .header-right {
+    gap: 10px;
+  }
+  
+  .social-icons {
+    gap: 6px;
+  }
+  
+  .social-circle {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .social-icon-img {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .application-btn {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 8px 0;
+  }
+  
+  .header-container {
+    padding: 0 10px;
+  }
+  
+  .logo-img {
+    height: 28px;
+  }
+  
+  .header-right {
+    gap: 8px;
+  }
+  
+  .social-icons {
+    gap: 5px;
+  }
+  
+  .social-circle {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .social-icon-img {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .application-btn {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+}

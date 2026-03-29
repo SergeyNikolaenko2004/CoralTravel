@@ -1,0 +1,42 @@
+:root {
+  /* Основные цвета */
+  --primary-orange: #F18B4C;
+  --primary-orange-dark: #e07a3a;
+  --primary-orange-light: #ff9a5a;
+  
+  /* Цвет хедера */
+  --header-bg: #79AAD7;
+  
+  /* Фоны блоков (будут перекрываться фотографиями) */
+  --block-bg: #ffffff;
+  
+  /* Цвета текста */
+  --text-white: #ffffff;
+  --text-dark: #333333;
+  --text-gray: #666666;
+  
+  /* Точки навигации */
+  --dot-inactive: rgba(255, 255, 255, 0.5);
+  --dot-active: #F18B4C;
+  --dot-hover: rgba(255, 255, 255, 0.8);
+  
+  /* Кнопки и элементы */
+  --btn-primary: #F18B4C;
+  --btn-primary-hover: #e07a3a;
+  --btn-transparent-bg: rgba(255, 255, 255, 0.9);
+  --btn-transparent-hover: #ffffff;
+  
+  /* Карточки */
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --card-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
+  
+  /* Тени */
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
+  
+  /* Анимации */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}

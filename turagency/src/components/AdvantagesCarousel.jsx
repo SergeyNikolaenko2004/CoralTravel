@@ -40,75 +40,110 @@ const advantages = [
   }
 ];
 
-function AdvantagesCarousel() {
+// Фоны для каждой страны
+const countryBackgrounds = [
+  '/src/assets/BackGroundImageCountry/Tai.png', // Таиланд
+  null, // Египет (будет серый)
+  null  // Китай (будет серый)
+];
+
+function AdvantagesCarousel({ currentCountry }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [cardsPerPage, setCardsPerPage] = useState(3);
-
-  // Определяем количество карточек в зависимости от ширины экрана
-  useEffect(() => {
-    const updateCardsPerPage = () => {
-      const width = window.innerWidth;
-      if (width < 768) {
-        setCardsPerPage(1);
-      } else if (width < 1024) {
-        setCardsPerPage(2);
-      } else {
-        setCardsPerPage(3);
-      }
-    };
-
-    updateCardsPerPage();
-    window.addEventListener('resize', updateCardsPerPage);
-    return () => window.removeEventListener('resize', updateCardsPerPage);
-  }, []);
-
-  const totalPages = Math.ceil(advantages.length / cardsPerPage);
+  const totalCards = advantages.length;
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % totalPages);
+    setCurrentIndex((prev) => (prev + 1) % totalCards);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + totalPages) % totalPages);
+    setCurrentIndex((prev) => (prev - 1 + totalCards) % totalCards);
   };
 
-  const goToPage = (pageIndex) => {
-    setCurrentIndex(pageIndex);
+  const goToPage = (index) => {
+    setCurrentIndex(index);
   };
 
-  const visibleCards = advantages.slice(
-    currentIndex * cardsPerPage,
-    currentIndex * cardsPerPage + cardsPerPage
-  );
+  // Получаем предыдущую, текущую и следующую карточки
+  const prevIndex = (currentIndex - 1 + totalCards) % totalCards;
+  const nextIndex = (currentIndex + 1) % totalCards;
+
+  const prevCard = advantages[prevIndex];
+  const currentCard = advantages[currentIndex];
+  const nextCard = advantages[nextIndex];
+
+  // Определяем стиль фона в зависимости от выбранной страны
+  const backgroundImage = countryBackgrounds[currentCountry];
+  const containerStyle = backgroundImage
+    ? {
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }
+    : {
+        backgroundColor: '#808080'
+      };
 
   return (
-    <div className="carousel-container">
-      <button className="carousel-btn prev" onClick={prevSlide}>
-        ❮
-      </button>
-      
-      <div className="carousel-track">
-        {visibleCards.map((card) => (
-          <div key={card.id} className="advantage-card">
-            <div className="card-icon">{card.icon}</div>
-            <h3 className="card-title">{card.title}</h3>
-            <p className="card-description">{card.description}</p>
+    <div className="advantages-container" style={containerStyle}>
+      <div className="advantages-content">
+        <div className="carousel-wrapper">
+          {/* Стрелки листания как в первом блоке */}
+          <button className="carousel-arrow prev" onClick={prevSlide}>
+            <svg className="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          
+          <button className="carousel-arrow next" onClick={nextSlide}>
+            <svg className="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+
+          {/* Карусель карточек - только 3 карточки */}
+          <div className="carousel-container">
+            <div className="carousel-track">
+              {/* Левая карточка */}
+              <div className="carousel-card card-left">
+                <div className="advantage-card">
+                  <div className="card-icon">{prevCard.icon}</div>
+                  <h3 className="card-title">{prevCard.title}</h3>
+                  <p className="card-description">{prevCard.description}</p>
+                </div>
+              </div>
+              
+              {/* Центральная карточка (активная, выше всех) */}
+              <div className="carousel-card card-center">
+                <div className="advantage-card active">
+                  <div className="card-icon">{currentCard.icon}</div>
+                  <h3 className="card-title">{currentCard.title}</h3>
+                  <p className="card-description">{currentCard.description}</p>
+                </div>
+              </div>
+              
+              {/* Правая карточка */}
+              <div className="carousel-card card-right">
+                <div className="advantage-card">
+                  <div className="card-icon">{nextCard.icon}</div>
+                  <h3 className="card-title">{nextCard.title}</h3>
+                  <p className="card-description">{nextCard.description}</p>
+                </div>
+              </div>
+            </div>
           </div>
-        ))}
-      </div>
-      
-      <button className="carousel-btn next" onClick={nextSlide}>
-        ❯
-      </button>
-      
-      <div className="dots-container">
-        {Array.from({ length: totalPages }).map((_, idx) => (
-          <button
-            key={idx}
-            className={`dot ${idx === currentIndex ? 'active' : ''}`}
-            onClick={() => goToPage(idx)}
-          />
-        ))}
+          
+          {/* Точки навигации */}
+          <div className="dots-container">
+            {advantages.map((_, idx) => (
+              <button
+                key={idx}
+                className={`dot ${idx === currentIndex ? 'active' : ''}`}
+                onClick={() => goToPage(idx)}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
