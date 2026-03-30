@@ -1,0 +1,220 @@
+@import '../styles/variables.css';
+
+/* Затемнение фона */
+.form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Модальное окно */
+.form-modal {
+  position: relative;
+  background: white;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 40px 35px;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Кнопка закрытия */
+.form-close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  background: none;
+  border: none;
+  font-size: 32px;
+  cursor: pointer;
+  color: #999;
+  transition: all var(--transition-normal);
+  line-height: 1;
+}
+
+.form-close:hover {
+  color: var(--btn-primary);
+  transform: scale(1.1);
+}
+
+/* Заголовки */
+.form-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.form-subtitle {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Форма */
+.application-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input {
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all var(--transition-normal);
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: var(--btn-primary);
+  box-shadow: 0 0 0 3px rgba(241, 139, 76, 0.1);
+}
+
+.form-group input.error {
+  border-color: #ff4444;
+}
+
+.error-message {
+  color: #ff4444;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* Чекбокс */
+.checkbox-group {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+  font-weight: normal;
+}
+
+.checkbox-label input {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.consent-link {
+  color: var(--header-bg);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.consent-link:hover {
+  color: #5a8eb5;
+}
+
+/* Кнопка отправки */
+.form-submit-btn {
+  background: var(--btn-primary);
+  color: white;
+  border: none;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  margin-top: 10px;
+}
+
+.form-submit-btn:hover {
+  background: var(--btn-primary-hover);
+  transform: scale(1.02);
+  box-shadow: var(--shadow-md);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .form-modal {
+    padding: 30px 25px;
+    width: 95%;
+  }
+  
+  .form-title {
+    font-size: 24px;
+  }
+  
+  .form-group input {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-modal {
+    padding: 25px 20px;
+  }
+  
+  .form-title {
+    font-size: 22px;
+  }
+  
+  .form-subtitle {
+    font-size: 12px;
+    margin-bottom: 25px;
+  }
+  
+  .form-close {
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+  }
+}

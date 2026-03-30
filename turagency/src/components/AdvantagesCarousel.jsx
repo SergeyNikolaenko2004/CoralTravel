@@ -1,34 +1,51 @@
 import { useState, useRef } from 'react';
 import './AdvantagesCarousel.css';
 import AngleImage from '/src/assets/Angle.png';
+import ApplicationForm from './ApplicationForm';
 
 const advantages = [
   {
     id: 1,
     title: 'Лучшие цены',
-    description: 'даыввддвдывд',
+    description: 'Гарантируем самые выгодные предложения от ведущих туроператоров',
   },
   {
     id: 2,
     title: 'Надежные партнеры',
-    description: 'фгфгфгфгфггфгфгф',
+    description: 'Работаем только с проверенными туроператорами и отелями',
   },
   {
     id: 3,
     title: 'Индивидуальный подход',
-    description: 'пупупупупупуп',
+    description: 'Подберем тур под ваши пожелания и бюджет',
+  },
+  {
+    id: 4,
+    title: 'Поддержка 24/7',
+    description: 'Всегда на связи во время вашего отдыха',
+  },
+  {
+    id: 5,
+    title: 'Быстрое бронирование',
+    description: 'Подтверждение тура в течение 30 минут',
+  },
+  {
+    id: 6,
+    title: 'Рассрочка без %',
+    description: 'Оплачивайте тур частями без переплат',
   }
 ];
 
 // Фоны для каждой страны
 const countryBackgrounds = [
-  '/src/assets/BackGroundImageCountry/Tai.png', // Таиланд
-  null, // Египет (будет серый)
-  null  // Китай (будет серый)
+  '/src/assets/BackGroundImageCountry/Tai.webp', // Таиланд
+  '/src/assets/BackGroundImageCountry/egypt.webp', // Египет 
+  '/src/assets/BackGroundImageCountry/china.webp'  // Китай
 ];
 
 function AdvantagesCarousel({ currentCountry }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isFormOpen, setIsFormOpen] = useState(false);
   const totalCards = advantages.length;
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
@@ -47,7 +64,15 @@ function AdvantagesCarousel({ currentCountry }) {
     setCurrentIndex(index);
   };
 
-  // Обработчики для свайпов на мобильных
+  const openApplicationForm = () => {
+    setIsFormOpen(true);
+  };
+
+  const closeApplicationForm = () => {
+    setIsFormOpen(false);
+  };
+
+  // Обработчики для свайпов
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
   };
@@ -72,7 +97,7 @@ function AdvantagesCarousel({ currentCountry }) {
     touchEndX.current = 0;
   };
 
-  // Обработчики для drag мышкой
+  // Обработчики для drag
   const handleMouseDown = (e) => {
     isDragging.current = true;
     mouseStartX.current = e.clientX;
@@ -98,7 +123,7 @@ function AdvantagesCarousel({ currentCountry }) {
     isDragging.current = false;
   };
 
-  // Получаем предыдущую, текущую и следующую карточки
+  // Получаем карточки
   const prevIndex = (currentIndex - 1 + totalCards) % totalCards;
   const nextIndex = (currentIndex + 1) % totalCards;
 
@@ -106,7 +131,6 @@ function AdvantagesCarousel({ currentCountry }) {
   const currentCard = advantages[currentIndex];
   const nextCard = advantages[nextIndex];
 
-  // Определяем стиль фона
   const backgroundImage = countryBackgrounds[currentCountry];
   const containerStyle = backgroundImage
     ? {
@@ -120,73 +144,78 @@ function AdvantagesCarousel({ currentCountry }) {
       };
 
   return (
-    <div 
-      className="advantages-container" 
-      style={containerStyle}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
-    >
-      <div className="advantages-content">
-        <div className="carousel-wrapper">
-          <button className="carousel-arrow prev" onClick={prevSlide}>
-            <svg className="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-          </button>
-          
-          <button className="carousel-arrow next" onClick={nextSlide}>
-            <svg className="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </button>
+    <>
+      <div 
+        className="advantages-container" 
+        style={containerStyle}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
+      >
+        <div className="advantages-content">
+          <div className="carousel-wrapper">
+            <button className="carousel-arrow prev" onClick={prevSlide}>
+              <svg className="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            
+            <button className="carousel-arrow next" onClick={nextSlide}>
+              <svg className="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
 
-          <div className="carousel-container">
-            <div className="carousel-track">
-              {/* Левая карточка */}
-              <div className="carousel-card card-left">
-                <div className="advantage-card">
-                  <h3 className="card-title">{prevCard.title}</h3>
-                  <p className="card-description">{prevCard.description}</p>
+            <div className="carousel-container">
+              <div className="carousel-track">
+                <div className="carousel-card card-left">
+                  <div className="advantage-card">
+                    <h3 className="card-title">{prevCard.title}</h3>
+                    <p className="card-description">{prevCard.description}</p>
+                  </div>
                 </div>
-              </div>
-              
-              {/* Центральная карточка */}
-              <div className="carousel-card card-center">
-                <div className="advantage-card active">
-                  <h3 className="card-title">{currentCard.title}</h3>
-                  <p className="card-description">{currentCard.description}</p>
+                
+                <div className="carousel-card card-center">
+                  <div className="advantage-card active">
+                    <h3 className="card-title">{currentCard.title}</h3>
+                    <p className="card-description">{currentCard.description}</p>
+                  </div>
                 </div>
-              </div>
-              
-              {/* Правая карточка */}
-              <div className="carousel-card card-right">
-                <div className="advantage-card">
-                  <h3 className="card-title">{nextCard.title}</h3>
-                  <p className="card-description">{nextCard.description}</p>
+                
+                <div className="carousel-card card-right">
+                  <div className="advantage-card">
+                    <h3 className="card-title">{nextCard.title}</h3>
+                    <p className="card-description">{nextCard.description}</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          
-          <div className="dots-container">
-            {advantages.map((_, idx) => (
-              <button
-                key={idx}
-                className={`dot ${idx === currentIndex ? 'active' : ''}`}
-                onClick={() => goToPage(idx)}
-              />
-            ))}
+            
+            <div className="dots-container">
+              {advantages.map((_, idx) => (
+                <button
+                  key={idx}
+                  className={`dot ${idx === currentIndex ? 'active' : ''}`}
+                  onClick={() => goToPage(idx)}
+                />
+              ))}
+            </div>
+
+            {/* Кнопка оставить заявку снизу - всегда видна */}
+            <button className="advantages-application-btn" onClick={openApplicationForm}>
+              Оставить заявку
+            </button>
           </div>
         </div>
+        <img src={AngleImage} alt="Angle" className="angle-image-advantages" />
       </div>
-      {/* Картинка в правом нижнем углу */}
-      <img src={AngleImage} alt="Angle" className="angle-image-advantages" />
-    </div>
+      
+      <ApplicationForm isOpen={isFormOpen} onClose={closeApplicationForm} />
+    </>
   );
 }
 

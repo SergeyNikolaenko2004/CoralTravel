@@ -1,4 +1,4 @@
-@import './styles/variables.css';
+@import '../styles/variables.css';
 
 .footer {
   position: fixed;
@@ -19,7 +19,7 @@
 }
 
 .footer-container {
-  max-width: 1400px;
+  max-width: 2560px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -147,12 +147,12 @@
 /* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
   .footer {
-    padding: 12px 25px;
+    padding: 12px 20px;
   }
   
   .footer-container {
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
   }
   
   .footer-left,
@@ -160,81 +160,106 @@
     min-width: 100%;
   }
   
-  .address-wrapper {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
+  /* Левая часть - контакты в две колонки */
+  .footer-left {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 15px;
   }
   
   .contact-item {
-    margin-bottom: 10px;
-    gap: 12px;
+    margin-bottom: 0;
+    flex-direction: column;
+    gap: 2px;
   }
   
   .contact-label {
-    min-width: 85px;
-    font-size: 14px;
+    min-width: auto;
+    font-size: 12px;
+    opacity: 0.8;
   }
   
   .contact-value {
-    font-size: 14px;
+    font-size: 12px;
+  }
+  
+  /* Правая часть - адрес сверху, карта снизу */
+  .address-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .address-item {
+    text-align: center;
+    justify-content: center;
   }
   
   .address-text {
-    font-size: 14px;
+    font-size: 13px;
+    text-align: center;
+  }
+  
+  .map-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
   
   .map-iframe {
-    width: 250px;
-    height: 200px;
+    width: 100%;
+    max-width: 280px;
+    height: 160px;
   }
 }
 
 /* Адаптивность для маленьких мобильных устройств */
 @media (max-width: 480px) {
   .footer {
-    padding: 10px 15px;
+    padding: 10px 12px;
   }
   
   .footer-container {
-    gap: 12px;
+    gap: 10px;
   }
   
-  .address-wrapper {
-    gap: 12px;
-  }
-  
-  .address-item {
-    flex-direction: column;
-    gap: 4px;
-  }
-  
-  .address-text {
-    font-size: 12px;
+  /* Левая часть - контакты в две колонки, компактно */
+  .footer-left {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 12px;
   }
   
   .contact-item {
-    flex-direction: column;
-    gap: 4px;
-    margin-bottom: 8px;
+    gap: 2px;
   }
   
   .contact-label {
-    min-width: auto;
-    font-size: 13px;
+    font-size: 10px;
   }
   
-  .contact-value,
+  .contact-value {
+    font-size: 10px;
+  }
+  
   .contact-value a {
-    font-size: 13px;
+    font-size: 10px;
+  }
+  
+  /* Правая часть - компактно */
+  .address-wrapper {
+    gap: 8px;
+  }
+  
+  .address-text {
+    font-size: 11px;
   }
   
   .map-container {
-    width: 100%;
+    margin-top: 0;
   }
   
   .map-iframe {
-    width: 100%;
-    height: 120px;
+    max-width: 100%;
+    height: 130px;
   }
 }

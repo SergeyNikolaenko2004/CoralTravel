@@ -51,9 +51,9 @@ function TourvisorSearch({ currentCountry, onSearchActive }) {
 
   // Фоны для каждой страны (как во втором блоке)
   const countryBackgrounds = [
-    '/src/assets/BackGroundImageCountry/Tai.png', // Таиланд
-    null, // Египет (будет серый)
-    null  // Китай (будет серый)
+    '/src/assets/BackGroundImageCountry/Tai.webp', // Таиланд
+    '/src/assets/BackGroundImageCountry/egypt.webp', // Египет 
+    '/src/assets/BackGroundImageCountry/china.webp'  // Китай
   ];
 
   const backgroundImage = countryBackgrounds[currentCountry];

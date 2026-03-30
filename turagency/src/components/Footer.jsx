@@ -8,32 +8,38 @@ function Footer({ show }) {
         <div className="footer-left">
           <div className="contact-item">
             <span className="contact-label">Телефон:</span>
-            <a href="tel:+78001234567" className="contact-value">+7 (392) 236 64 64</a>
-            <a href="tel:+78001234567" className="contact-value">+7 (902) 176 63 72</a>
+            <div className="contact-value">
+              <a href="tel:+73922366464">+7 (392) 236 64 64</a>
+              <br />
+              <a href="tel:+79021766372">+7 (902) 176 63 72</a>
+            </div>
           </div>
           <div className="contact-item">
             <span className="contact-label">Почта:</span>
-            <span className="contact-value">irkcoral@mail.ru</span>
+            <a href="mailto:irkcoral@mail.ru" className="contact-value">irkcoral@mail.ru</a>
           </div>
           <div className="contact-item">
-            <span className="contact-label">График работы:</span>
-            <span className="contact-value">с 10:00 до 20:00, Пн-Вс</span>
+            <span className="contact-label">График:</span>
+            <span className="contact-value">10:00-20:00, Пн-Вс</span>
           </div>
           <div className="contact-item">
             <span className="contact-label">ИНН:</span>
-            <span className="contact-value">1234567890</span>
+            <span className="contact-value">381016235739</span>
           </div>
           <div className="contact-item">
             <span className="contact-label">ОГРН:</span>
-            <span className="contact-value">1234567890123</span>
+            <span className="contact-value">323385000071955</span>
+          </div>
+          <div className="contact-item copyright">
+            <span className="contact-value">© 2026 ИП Лукашева И.С.</span>
           </div>
         </div>
 
-        {/* Правая часть - адрес и карта в одной строке */}
+        {/* Правая часть - адрес и карта */}
         <div className="footer-right">
           <div className="address-wrapper">
             <div className="address-item">
-              <span className="address-text">г. Иркутск, ул. Култукская, д. 18 Coral Travel</span>
+              <span className="address-text">г. Иркутск, ул. Култукская, д. 18, Coral Travel</span>
             </div>
             <div className="map-container">
               <iframe 

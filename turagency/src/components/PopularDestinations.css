@@ -1,4 +1,4 @@
-@import './styles/variables.css';
+@import '../styles/variables.css';
 
 .popular-destinations {
   position: relative;
@@ -24,6 +24,7 @@
   margin: 0;
   padding: 0;
   padding-top: 15vh;
+  transition: background-image 0.9s ease-in-out;
 }
 
 /* Точки навигации сверху */
@@ -80,10 +81,19 @@
   letter-spacing: 2px;
   margin: 0 80px;
   text-align: center;
+  transition: opacity 0.3s ease;
+}
+
+/* Анимация для смены текста */
+.country-name.fade-out {
+  opacity: 0;
+}
+
+.country-name.fade-in {
+  opacity: 1;
 }
 
 /* Стрелки навигации по краям - только в первом блоке */
-/* Стрелки навигации по краям - по центру верхней секции */
 .popular-btn {
   position: absolute;
   top: 50%;
@@ -122,15 +132,14 @@
   stroke: white;
 }
 
-
 /* Плавный переход от картинки к белому фону */
 .gradient-transition {
   height: 80px;
   background: linear-gradient(to bottom, 
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.3) 20%,
-    rgba(255, 255, 255, 0.6) 50%,
-    rgba(255, 255, 255, 0.9) 80%,
+    rgba(255, 255, 255, 0) 10%,
+    rgba(255, 255, 255, 0.2) 30%,
+    rgba(255, 255, 255, 0.3) 60%,
+    rgba(255, 255, 255, 0.5) 80%,
     #ffffff 100%
   );
   margin-top: -80px;
@@ -162,6 +171,15 @@
   text-align: center;
   max-width: 800px;
   margin: 0 auto;
+  transition: opacity 0.3s ease;
+}
+
+.country-description.fade-out {
+  opacity: 0;
+}
+
+.country-description.fade-in {
+  opacity: 1;
 }
 
 .find-tours-btn-bottom {

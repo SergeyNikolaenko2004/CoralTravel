@@ -1,4 +1,4 @@
-@import './styles/variables.css';
+@import '../styles/variables.css';
 
 /* Основной контейнер с фоном на весь блок */
 .advantages-container {
@@ -8,6 +8,8 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,10 +24,10 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0);
+  background: rgba(255, 255, 255, 0.5);
   z-index: 1;
 }
-
+ 
 /* Контент поверх фона */
 .advantages-content {
   position: relative;
@@ -107,6 +109,7 @@
 .card-center {
   transform: scale(1);
   z-index: 5;
+  margin-top: 150px;
 }
 
 .card-center .advantage-card {
@@ -122,6 +125,7 @@
 .card-left, .card-right {
   transform: scale(0.85);
   z-index: 3;
+  margin-top: 150px;
 }
 
 .card-left .advantage-card,
@@ -200,6 +204,30 @@
   pointer-events: none;
 }
 
+/* Кнопка оставить заявку внизу блока преимуществ */
+.advantages-application-btn {
+  background: var(--btn-primary);
+  color: var(--text-white);
+  border: none;
+  padding: 14px 40px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+  margin-top: 40px;
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.advantages-application-btn:hover {
+  background: var(--btn-primary-hover);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
+}
 
 /* Адаптивность */
 @media (max-width: 1024px) {
@@ -252,6 +280,13 @@
     bottom: 0px;
     right: 0px;
   }
+
+  .advantages-application-btn {
+    padding: 12px 32px;
+    font-size: 14px;
+    margin-top: 30px;
+  }
+
   .carousel-arrow.prev {
     left: 5px;
   }
@@ -309,6 +344,12 @@
   
   .carousel-arrow.prev {
     left: 5px;
+  }
+
+  .advantages-application-btn {
+    padding: 10px 24px;
+    font-size: 12px;
+    margin-top: 25px;
   }
 
   .angle-image-advantages {

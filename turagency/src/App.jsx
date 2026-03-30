@@ -13,11 +13,12 @@ function App() {
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [currentCountry, setCurrentCountry] = useState(0);
   const [showFooter, setShowFooter] = useState(false);
+  const [activeBlock, setActiveBlock] = useState(0);
 
   const scrollToBlock = (index) => {
     blocksRef.current[index]?.scrollIntoView({ behavior: 'smooth' });
     currentBlockRef.current = index;
-    // Показываем футер только на 3 блоке (индекс 2)
+    setActiveBlock(index);
     setShowFooter(index === 2);
   };
 
@@ -48,13 +49,13 @@ function App() {
     return () => window.removeEventListener('wheel', handleWheel);
   }, [isSearchActive]);
 
-  // При монтировании проверяем, какой блок активен
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const index = blocksRef.current.findIndex(block => block === entry.target);
           if (index !== -1) {
+            setActiveBlock(index);
             setShowFooter(index === 2);
           }
         }
@@ -70,9 +71,8 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header hideApplicationBtn={activeBlock === 1} />
       <div className="app">
-        {/* Блок 1 - Популярные направления */}
         <div 
           className="block block-1"
           ref={el => blocksRef.current[0] = el}
@@ -82,7 +82,6 @@ function App() {
           </div>
         </div>
 
-        {/* Блок 2 - Карусель преимуществ */}
         <div 
           className="block block-2"
           ref={el => blocksRef.current[1] = el}
@@ -90,7 +89,6 @@ function App() {
           <AdvantagesCarousel currentCountry={currentCountry} />
         </div>
 
-        {/* Блок 3 - Поиск туров */}
         <div 
           className="block block-3"
           ref={el => blocksRef.current[2] = el}
