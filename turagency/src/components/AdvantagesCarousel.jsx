@@ -1,6 +1,5 @@
 import { useState, useRef } from 'react';
 import './AdvantagesCarousel.css';
-import AngleImage from '/images/Angle.png';
 import ApplicationForm from './ApplicationForm';
 
 const advantages = [
@@ -33,9 +32,9 @@ const advantages = [
 
 // Фоны для каждой страны
 const countryBackgrounds = [
-  '/images/Tai.webp',
-  '/images/egypt.webp',
-  '/images/china.webp'
+  `${import.meta.env.BASE_URL}images/Tai.webp`,
+  `${import.meta.env.BASE_URL}images/egypt.webp`,
+  `${import.meta.env.BASE_URL}images/china.webp`
 ];
 
 function AdvantagesCarousel({ currentCountry }) {
@@ -206,7 +205,11 @@ function AdvantagesCarousel({ currentCountry }) {
             </button>
           </div>
         </div>
-        <img src={AngleImage} alt="Angle" className="angle-image-advantages" />
+        <img 
+          src={`${import.meta.env.BASE_URL}images/Angle.png`} 
+          alt="Angle" 
+          className="angle-image-advantages" 
+        />
       </div>
       
       <ApplicationForm isOpen={isFormOpen} onClose={closeApplicationForm} />
