@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import './AdvantagesCarousel.css';
-import AngleImage from '/src/assets/Angle.png';
+import AngleImage from '/images/Angle.png';
 import ApplicationForm from './ApplicationForm';
 
 const advantages = [
@@ -33,9 +33,9 @@ const advantages = [
 
 // Фоны для каждой страны
 const countryBackgrounds = [
-  '/src/assets/BackGroundImageCountry/Tai.webp', // Таиланд
-  '/src/assets/BackGroundImageCountry/egypt.webp', // Египет 
-  '/src/assets/BackGroundImageCountry/china.webp'  // Китай
+  '/images/Tai.webp',
+  '/images/egypt.webp',
+  '/images/china.webp'
 ];
 
 function AdvantagesCarousel({ currentCountry }) {

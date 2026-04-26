@@ -1,25 +1,25 @@
 import { useState, useRef, useEffect } from 'react';
 import './PopularDestinations.css';
-import AngleImage from '/src/assets/Angle.png';
+import AngleImage from '/images/Angle.png';
 
 const destinations = [
   {
     id: 1,
     country: 'Таиланд',
     description: 'Экзотическая природа, буддийские храмы, изумрудное море, незабываемая кухня',
-    backgroundImage: '/src/assets/BackGroundImageCountry/Tai.webp'
+    backgroundImage: '/images/Tai.webp'
   },
   {
     id: 2,
     country: 'Египет',
     description: 'Древние пирамиды, коралловые рифы, круглогодичное солнце и удивительное Красное море',
-    backgroundImage: '/src/assets/BackGroundImageCountry/egypt.webp'
+    backgroundImage: '/images/egypt.webp'
   },
   {
     id: 3,
     country: 'Китай',
     description: 'Великая стена, древняя культура, невероятная кухня и современные мегаполисы',
-    backgroundImage:  '/src/assets/BackGroundImageCountry/china.webp'
+    backgroundImage: '/images/china.webp'
   }
 ];
 

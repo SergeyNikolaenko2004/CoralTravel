@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import './Header.css';
-import TelegramLogo from '../assets/TelegrammLogo.png';
-import InstagramLogo from '../assets/InstagramLogo.png';
-import MaxLogo from '../assets/MaxLogo.png';
+import TelegramLogo from '/images/TelegrammLogo.png';
+import InstagramLogo from '/images/InstagramLogo.png';
+import MaxLogo from '/images/MaxLogo.png';
 import ApplicationForm from './ApplicationForm';
 
 function Header({ hideApplicationBtn = false }) {
