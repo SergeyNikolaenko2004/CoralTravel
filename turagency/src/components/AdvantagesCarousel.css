@@ -11,8 +11,7 @@
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   overflow: hidden;
 }
 
@@ -32,10 +31,14 @@
 .advantages-content {
   position: relative;
   z-index: 2;
+  flex: 1;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px 0;
 }
 
 /* Обертка карусели */
@@ -44,12 +47,15 @@
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Стрелки как в первом блоке */
 .carousel-arrow {
   position: absolute;
-  top: 50%;
+  top: 40%;
   transform: translateY(-50%);
   width: 56px;
   height: 56px;
@@ -90,6 +96,8 @@
   width: 100%;
   overflow: visible;
   padding: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .carousel-track {
@@ -109,7 +117,6 @@
 .card-center {
   transform: scale(1);
   z-index: 5;
-  margin-top: 150px;
 }
 
 .card-center .advantage-card {
@@ -125,7 +132,6 @@
 .card-left, .card-right {
   transform: scale(0.85);
   z-index: 3;
-  margin-top: 150px;
 }
 
 .card-left .advantage-card,
@@ -170,7 +176,7 @@
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 
 .dot {
@@ -204,7 +210,7 @@
   pointer-events: none;
 }
 
-/* Кнопка оставить заявку внизу блока преимуществ */
+/* Кнопка оставить заявку - всегда внизу */
 .advantages-application-btn {
   background: var(--btn-primary);
   color: var(--text-white);
@@ -216,11 +222,9 @@
   cursor: pointer;
   transition: all var(--transition-normal);
   box-shadow: var(--shadow-sm);
-  margin-top: 40px;
-  display: block;
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 30px;
+  flex-shrink: 0;
+  z-index: 3;
 }
 
 .advantages-application-btn:hover {
@@ -261,7 +265,7 @@
   }
   
   .dots-container {
-    margin-top: 50px;
+    margin-top: 25px;
   }
   
   .carousel-track {
@@ -270,6 +274,11 @@
 }
 
 @media (max-width: 768px) {
+  .advantages-content {
+    align-items: center;
+    padding: 40px 0 20px 0;
+  }
+
   .carousel-arrow {
     width: 40px;
     height: 40px;
@@ -284,7 +293,7 @@
   .advantages-application-btn {
     padding: 12px 32px;
     font-size: 14px;
-    margin-top: 30px;
+    margin-top: 20px;
   }
 
   .carousel-arrow.prev {
@@ -332,11 +341,16 @@
   }
   
   .dots-container {
-    margin-top: 40px;
+    margin-top: 20px;
   }
 }
 
 @media (max-width: 480px) {
+  .advantages-content {
+    align-items: center;
+    padding: 20px 0 10px 0;
+  }
+
   .carousel-arrow {
     width: 32px;
     height: 32px;
@@ -349,7 +363,7 @@
   .advantages-application-btn {
     padding: 10px 24px;
     font-size: 12px;
-    margin-top: 25px;
+    margin-top: 15px;
   }
 
   .angle-image-advantages {
@@ -368,7 +382,7 @@
   }
   
   .carousel-container {
-    padding: 15px 10px;
+    padding: 10px;
   }
   
   .carousel-track {
@@ -376,25 +390,25 @@
   }
   
   .card-center .advantage-card {
-    min-height: 340px;
-    padding: 30px 20px;
-    width: 240px;
+    min-height: 280px;
+    padding: 25px 15px;
+    width: 220px;
   }
   
   .card-left .advantage-card,
   .card-right .advantage-card {
-    min-height: 280px;
-    padding: 25px 15px;
-    width: 200px;
+    min-height: 240px;
+    padding: 20px 12px;
+    width: 180px;
   }
   
   .card-title {
-    font-size: 20px;
-    margin-bottom: 12px;
+    font-size: 18px;
+    margin-bottom: 10px;
   }
   
   .card-description {
-    font-size: 13px;
+    font-size: 12px;
   }
   
   .dot {
@@ -403,7 +417,7 @@
   }
   
   .dots-container {
-    margin-top: 35px;
+    margin-top: 15px;
     gap: 8px;
   }
 }
