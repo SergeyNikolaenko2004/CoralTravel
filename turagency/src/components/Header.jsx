@@ -1,8 +1,5 @@
 import { useState } from 'react';
 import './Header.css';
-import TelegramLogo from '/images/TelegrammLogo.png';
-import InstagramLogo from '/images/InstagramLogo.png';
-import MaxLogo from '/images/MaxLogo.png';
 import ApplicationForm from './ApplicationForm';
 
 function Header({ hideApplicationBtn = false }) {
@@ -29,7 +26,11 @@ function Header({ hideApplicationBtn = false }) {
         <div className="header-container">
           {/* Логотип - клик возвращает на первый блок */}
           <div className="logo" onClick={scrollToFirstBlock}>
-            <img src="/CoralTravel.png" alt="Coral Travel" className="logo-img" />
+            <img 
+              src={`${import.meta.env.BASE_URL}CoralTravel.png`} 
+              alt="Coral Travel" 
+              className="logo-img" 
+            />
           </div>
 
           {/* Правая часть */}
@@ -37,15 +38,27 @@ function Header({ hideApplicationBtn = false }) {
             {/* Социальные иконки */}
             <div className="social-icons">
               <a href="https://t.me/irkcoral" target="_blank" rel="noopener noreferrer" className="social-circle">
-                <img src={TelegramLogo} alt="Telegram" className="social-icon-img" />
+                <img 
+                  src={`${import.meta.env.BASE_URL}images/TelegrammLogo.png`} 
+                  alt="Telegram" 
+                  className="social-icon-img" 
+                />
               </a>
               
               <a href="https://www.instagram.com/coral_travelirk?igsh=NDlkZ3RhaGh6Y3Ex&utm_source=ig_contact_invite" target="_blank" rel="noopener noreferrer" className="social-circle">
-                <img src={InstagramLogo} alt="Instagram" className="social-icon-img" />
+                <img 
+                  src={`${import.meta.env.BASE_URL}images/InstagramLogo.png`} 
+                  alt="Instagram" 
+                  className="social-icon-img" 
+                />
               </a>
               
               <a href="https://max.ru/id381016235739_biz" target="_blank" rel="noopener noreferrer" className="social-circle">
-                <img src={MaxLogo} alt="Messenger" className="social-icon-img" />
+                <img 
+                  src={`${import.meta.env.BASE_URL}images/MaxLogo.png`} 
+                  alt="Messenger" 
+                  className="social-icon-img" 
+                />
               </a>
             </div>
 

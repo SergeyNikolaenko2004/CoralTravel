@@ -1,25 +1,24 @@
 import { useState, useRef, useEffect } from 'react';
 import './PopularDestinations.css';
-import AngleImage from '/images/Angle.png';
 
 const destinations = [
   {
     id: 1,
     country: 'Таиланд',
     description: 'Экзотическая природа, буддийские храмы, изумрудное море, незабываемая кухня',
-    backgroundImage: '/images/Tai.webp'
+    backgroundImage: `${import.meta.env.BASE_URL}images/Tai.webp`
   },
   {
     id: 2,
     country: 'Египет',
     description: 'Древние пирамиды, коралловые рифы, круглогодичное солнце и удивительное Красное море',
-    backgroundImage: '/images/egypt.webp'
+    backgroundImage: `${import.meta.env.BASE_URL}images/egypt.webp`
   },
   {
     id: 3,
     country: 'Китай',
     description: 'Великая стена, древняя культура, невероятная кухня и современные мегаполисы',
-    backgroundImage: '/images/china.webp'
+    backgroundImage: `${import.meta.env.BASE_URL}images/china.webp`
   }
 ];
 
@@ -249,7 +248,11 @@ function PopularDestinations({ onCountryChange }) {
         <button className="find-tours-btn-bottom" onClick={scrollToSearch}>
           Найти туры
         </button>
-        <img src={AngleImage} alt="Angle" className="angle-image" />
+        <img 
+          src={`${import.meta.env.BASE_URL}images/Angle.png`} 
+          alt="Angle" 
+          className="angle-image" 
+        />
       </div>
     </div>
   );
