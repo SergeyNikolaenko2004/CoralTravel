@@ -1,0 +1,203 @@
+/* Затемнение */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.overlayVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Панель */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 32px 40px 24px;
+
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--glass-border);
+}
+
+.visible {
+  transform: translateY(0);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* Левая часть */
+.left {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font-size: 14px;
+}
+
+.label {
+  color: var(--text-muted);
+  min-width: 70px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.value {
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.value a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.value a:hover {
+  color: var(--accent-gold);
+}
+
+.copy {
+  margin-top: 8px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+/* Правая часть */
+.right {
+  flex: 1;
+  min-width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.address {
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: right;
+}
+
+.map {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+}
+
+.mapIframe {
+  width: 320px;
+  height: 200px;
+  border: none;
+  display: block;
+}
+
+/* Планшеты */
+@media (max-width: 768px) {
+  .footer {
+    padding: 24px 24px 20px;
+  }
+
+  .container {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .left {
+    min-width: auto;
+  }
+
+  .right {
+    min-width: auto;
+    align-items: flex-start;
+  }
+
+  .address {
+    text-align: left;
+  }
+
+  .map {
+    width: 100%;
+  }
+
+  .mapIframe {
+    width: 100%;
+    height: 180px;
+  }
+
+  .item {
+    font-size: 13px;
+  }
+
+  .label {
+    font-size: 12px;
+    min-width: 60px;
+  }
+
+  .value {
+    font-size: 13px;
+  }
+}
+
+/* Телефоны */
+@media (max-width: 480px) {
+  .footer {
+    padding: 20px 16px 16px;
+  }
+
+  .container {
+    gap: 16px;
+  }
+
+  .left {
+    gap: 6px;
+  }
+
+  .item {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .label {
+    font-size: 10px;
+  }
+
+  .value {
+    font-size: 12px;
+  }
+
+  .mapIframe {
+    height: 150px;
+  }
+
+  .address {
+    font-size: 12px;
+  }
+}

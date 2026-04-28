@@ -1,0 +1,143 @@
+.wrapper {
+  width: 100%;
+}
+
+.heading {
+  margin: 0 0 40px;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Первый ряд — 3 карточки, второй ряд — 2 карточки по центру */
+.card:nth-child(4) {
+  grid-column: 1 / 2;
+}
+.card:nth-child(5) {
+  grid-column: 2 / 4;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px 28px;
+
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.iconWrapper {
+  color: var(--accent-gold);
+  display: flex;
+}
+
+.textWrapper {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.number {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--accent-gold);
+  opacity: 0.4;
+  line-height: 1;
+  min-width: 30px;
+}
+
+.title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.description {
+  margin: 0;
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+/* Планшеты */
+@media (max-width: 768px) {
+  .heading {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .card:nth-child(4),
+  .card:nth-child(5) {
+    grid-column: auto;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .number {
+    font-size: 24px;
+  }
+
+  .title {
+    font-size: 14px;
+  }
+
+  .description {
+    font-size: 12px;
+  }
+}
+
+/* Телефоны */
+@media (max-width: 480px) {
+  .heading {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .card {
+    padding: 16px;
+    gap: 8px;
+  }
+
+  .number {
+    font-size: 22px;
+  }
+
+  .title {
+    font-size: 14px;
+  }
+
+  .description {
+    font-size: 12px;
+  }
+}

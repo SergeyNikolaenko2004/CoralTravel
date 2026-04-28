@@ -1,0 +1,185 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  max-width: 500px;
+  justify-self: center;
+  width: 100%;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 10, 15, 0.85) 0%,
+    rgba(10, 10, 15, 0.2) 50%,
+    rgba(10, 10, 15, 0.05) 100%
+  );
+}
+
+.info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.country {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+.description {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  margin-top: 8px;
+  padding: 10px 24px;
+  
+  background: var(--accent-gold);
+  border: none;
+  border-radius: var(--radius-sm);
+  
+  color: #0a0a0f;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.button:hover {
+  background: var(--accent-gold-light);
+  transform: translateX(2px);
+}
+
+.button:active {
+  transform: scale(0.96);
+}
+
+.content {
+  flex: 1;
+  padding: 40px 24px 120px;
+  overflow-y: auto;
+  border-radius: 20px 20px 0 0;
+  
+  /* Скрываем скроллбар */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Планшеты */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .card {
+    aspect-ratio: 3 / 4.5;
+  }
+
+  .info {
+    padding: 20px 16px 16px;
+  }
+
+  .country {
+    font-size: 18px;
+  }
+
+  .description {
+    font-size: 12px;
+  }
+
+  .button {
+    padding: 8px 20px;
+    font-size: 13px;
+  }
+
+  .content {
+  padding: 30px 16px 100px;
+  border-radius: 16px 16px 0 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+}
+
+/* Телефоны */
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .card {
+    aspect-ratio: 16 / 9;
+  }
+
+  .info {
+    padding: 16px 14px 14px;
+  }
+
+  .country {
+    font-size: 18px;
+  }
+
+  .description {
+    font-size: 12px;
+  }
+
+  .content {
+  padding: 24px 12px 90px;
+  border-radius: 14px 14px 0 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+}

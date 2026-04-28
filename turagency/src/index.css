@@ -1,0 +1,25 @@
+:root {
+  /* Основные */
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #12121a;
+  --bg-card: #1a1a24;
+  
+  /* Акценты */
+  --accent-gold: #c9a96e;
+  --accent-gold-light: #d4bc8a;
+  
+  /* Текст */
+  --text-primary: #e8e6e3;
+  --text-secondary: #9d9b98;
+  --text-muted: #5c5a57;
+  
+  /* Стекло */
+  --glass-bg: rgba(18, 18, 26, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: 12px;
+  
+  /* Отступы и радиусы */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+}

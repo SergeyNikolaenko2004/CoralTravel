@@ -1,0 +1,204 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+}
+
+.logo img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.searchBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.searchBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.socialIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: var(--text-secondary);
+  transition: all 0.25s ease;
+}
+
+.socialIcon:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.socialIconImg {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  display: block;
+}
+
+.socialIconMax .socialIconImg {
+  filter: brightness(0) saturate(100%) invert(65%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(95%) contrast(85%);
+  transition: filter 0.25s ease;
+}
+
+.socialIconMax:hover .socialIconImg {
+  filter: brightness(0) saturate(100%) invert(95%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(85%);
+}
+
+/* Планшеты */
+@media (max-width: 768px) {
+  .header {
+    padding: 10px 12px;
+  }
+
+  .logo img {
+    height: 28px;
+  }
+
+  .searchBtn {
+    padding: 7px 12px;
+    font-size: 12px;
+    gap: 4px;
+  }
+
+  .searchBtn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .socialIcon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .socialIcon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .socialIconImg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .right {
+    gap: 6px;
+  }
+
+  .socials {
+    gap: 1px;
+  }
+}
+
+/* Телефоны */
+@media (max-width: 480px) {
+  .header {
+    padding: 8px 10px;
+  }
+
+  .logo img {
+    height: 24px;
+  }
+
+  .searchBtn {
+    padding: 6px 10px;
+    font-size: 11px;
+    gap: 3px;
+    border-radius: 6px;
+  }
+
+  .searchBtn svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .socialIcon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .socialIcon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .socialIconImg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .right {
+    gap: 4px;
+  }
+
+  .socials {
+    gap: 0;
+  }
+}
+
+/* Очень маленькие экраны (до 360px) */
+@media (max-width: 360px) {
+  .searchBtn span {
+    display: none;
+  }
+
+  .searchBtn {
+    padding: 6px 8px;
+  }
+
+  .socialIcon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .socialIcon svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .socialIconImg {
+    width: 14px;
+    height: 14px;
+  }
+}

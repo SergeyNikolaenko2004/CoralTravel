@@ -1,0 +1,140 @@
+.container {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Закладки в ряд */
+.labelsRow {
+  position: fixed;
+  top: calc(15vh - 44px);
+  left: 16px;
+  z-index: 300;
+  display: flex;
+  gap: 4px;
+  pointer-events: auto;
+}
+
+.tab {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 85vh;
+  border-radius: 20px 20px 0 0;
+  transform: translateY(100%);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+
+  /* Стеклянный фон */
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-top: 1px solid var(--glass-border);
+}
+
+.tab.visible {
+  transform: translateY(0);
+}
+
+.label {
+  padding: 10px 24px;
+  border-radius: 12px 12px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+  pointer-events: auto;
+  transition: all 0.25s ease;
+
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-bottom: none;
+}
+
+.labelActive {
+  background: rgba(34, 34, 48, 0.7);
+}
+
+.labelClickable {
+  cursor: pointer;
+}
+
+.labelClickable:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.content {
+  flex: 1;
+  padding: 40px 24px 120px;
+  overflow-y: auto;
+  border-radius: 20px 20px 0 0;
+  
+  /* Скрываем скроллбар */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Планшеты */
+@media (max-width: 768px) {
+  .labelsRow {
+    top: calc(18vh - 38px);
+    left: 12px;
+    gap: 3px;
+  }
+
+  .tab {
+    height: 82vh;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .label {
+    padding: 8px 16px;
+    font-size: 13px;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .content {
+    padding: 30px 16px 100px;
+    border-radius: 16px 16px 0 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+}
+
+/* Телефоны */
+@media (max-width: 480px) {
+  .labelsRow {
+    top: calc(20vh - 30px);
+    left: 10px;
+    gap: 2px;
+  }
+
+  .tab {
+    height: 80vh;
+    border-radius: 14px 14px 0 0;
+  }
+
+  .label {
+    padding: 6px 12px;
+    font-size: 11px;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .content {
+    padding: 24px 12px 90px;
+    border-radius: 14px 14px 0 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+}
