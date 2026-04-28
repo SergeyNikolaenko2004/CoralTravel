@@ -115,7 +115,7 @@
 /* Телефоны */
 @media (max-width: 480px) {
   .labelsRow {
-    top: calc(20vh - 30px);
+    top: calc(20vh - 40px);
     left: 10px;
     gap: 2px;
   }
