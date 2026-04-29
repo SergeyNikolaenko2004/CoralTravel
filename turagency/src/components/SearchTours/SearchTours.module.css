@@ -1,0 +1,29 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 20px;
+}
+
+.imageWrapper {
+  width: 100%;
+  max-width: 800px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  background: #1a1a24;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Планшеты */
+@media (max-width: 768px) {
+  .imageWrapper {
+    max-width: 100%;
+  }
+}

@@ -2,15 +2,6 @@
   width: 100%;
 }
 
-.heading {
-  margin: 0 0 40px;
-  font-size: 36px;
-  font-weight: 700;
-  color: var(--text-primary);
-  letter-spacing: -0.5px;
-  text-align: center;
-}
-
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -20,9 +11,6 @@
 /* Первый ряд — 3 карточки, второй ряд — 2 карточки по центру */
 .card:nth-child(4) {
   grid-column: 1 / 2;
-}
-.card:nth-child(5) {
-  grid-column: 2 / 4;
 }
 
 .card {
@@ -43,9 +31,18 @@
   transform: translateY(-2px);
 }
 
-.iconWrapper {
-  color: var(--accent-gold);
+.iconPlaceholder {
+  width: 48px;
+  height: 48px;
+  background: #2a2a35;
+  border-radius: var(--radius-sm);
   display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6a6a7a;
+  font-size: 10px;
+  text-align: center;
+  line-height: 1.2;
 }
 
 .textWrapper {
@@ -54,32 +51,34 @@
   gap: 12px;
 }
 
-.number {
+.heading {
+  margin: 0 0 40px;
   font-size: 36px;
-  font-weight: 800;
-  color: var(--accent-gold);
-  opacity: 0.4;
-  line-height: 1;
-  min-width: 30px;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: 0px;
+  text-align: center;
 }
 
 .title {
   margin: 0;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 24px;
+  font-weight: 500;
   color: var(--text-primary);
 }
 
 .description {
   margin: 0;
-  font-size: 15px;
-  color: var(--text-secondary);
-  line-height: 1.5;
+  font-size: 18px;
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-weight: 400;
 }
+
 /* Планшеты */
 @media (max-width: 768px) {
   .heading {
-    font-size: 24px;
+    font-size: 26px;
     margin-bottom: 24px;
   }
 
@@ -98,22 +97,22 @@
   }
 
   .number {
-    font-size: 24px;
+    font-size: 28px;
   }
 
   .title {
-    font-size: 14px;
+    font-size: 18px;
   }
 
   .description {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
 /* Телефоны */
 @media (max-width: 480px) {
   .heading {
-    font-size: 20px;
+    font-size: 22px;
     margin-bottom: 20px;
   }
 
@@ -124,18 +123,18 @@
 
   .card {
     padding: 16px;
-    gap: 8px;
+    gap: 10px;
   }
 
   .number {
-    font-size: 22px;
+    font-size: 26px;
   }
 
   .title {
-    font-size: 14px;
+    font-size: 17px;
   }
 
   .description {
-    font-size: 12px;
+    font-size: 14px;
   }
 }

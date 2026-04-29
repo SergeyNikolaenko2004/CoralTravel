@@ -9,29 +9,44 @@ import FooterPanel from './components/FooterPanel/FooterPanel'
 const App = () => {
   const [activeIndex, setActiveIndex] = useState(-1)
   const [showFooter, setShowFooter] = useState(false)
+  const [showAbout, setShowAbout] = useState(false)
 
   const handleSearchClick = () => {
-    setActiveIndex(2) // Переход на 3-й блок (Поиск туров)
+    setActiveIndex(2)
+    setShowAbout(false)
   }
 
-  const handleHomeClick = () => {
-    setActiveIndex(-1) // Закрываем все блоки
-    setShowFooter(false) // Закрываем футер, если открыт
+  const handleNavClick = (action) => {
+    setShowFooter(false)
+    if (action === 'tours') {
+      setActiveIndex(0)
+      setShowAbout(false)
+    } else if (action === 'advantages') {
+      setActiveIndex(1)
+      setShowAbout(false)
+    } else if (action === 'about') {
+      setActiveIndex(-1)
+      setShowAbout(prev => !prev)  // Переключаем: открыт → закрыть, закрыт → открыть
+    }
   }
 
   return (
     <>
       <Hero />
       <Header onSearchClick={handleSearchClick} />
-      <HeroTitle hidden={activeIndex >= 0} />
+      <HeroTitle hidden={activeIndex >= 0 || showAbout} />
       <ScrollStack
         activeIndex={activeIndex}
         onActiveIndexChange={setActiveIndex}
         onActiveChange={setActiveIndex}
+        showAbout={showAbout}
       />
       <GlassNav
-        onContactsClick={() => setShowFooter(true)}
-        onHomeClick={handleHomeClick}
+        onContactsClick={() => {
+          setShowFooter(true)
+          setShowAbout(false)
+        }}
+        onNavClick={handleNavClick}
       />
       <FooterPanel show={showFooter} onClose={() => setShowFooter(false)} />
     </>

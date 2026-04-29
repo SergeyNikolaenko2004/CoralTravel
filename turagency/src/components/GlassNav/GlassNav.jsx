@@ -1,13 +1,13 @@
 import styles from './GlassNav.module.css'
 
 const navItems = [
-  { label: 'Главная', path: '/' },
-  { label: 'Розыгрыши', path: '/giveaways' },
-  { label: 'О нас', path: '/about' },
-  { label: 'Контакты', path: '/contacts' },
+  { label: 'Популярные туры', action: 'tours' },
+  { label: 'Преимущества', action: 'advantages' },
+  { label: 'О нас', action: 'about' },
+  { label: 'Контакты', action: 'contacts' },
 ]
 
-const GlassNav = ({ onContactsClick, onHomeClick }) => {
+const GlassNav = ({ onContactsClick, onHomeClick, onNavClick }) => {
   return (
     <nav className={styles.nav}>
       {navItems.map((item) => (
@@ -15,11 +15,10 @@ const GlassNav = ({ onContactsClick, onHomeClick }) => {
           key={item.label}
           className={styles.navBtn}
           onClick={() => {
-            if (item.label === 'Контакты') {
+            if (item.action === 'contacts') {
               onContactsClick?.()
-            }
-            if (item.label === 'Главная') {
-              onHomeClick?.()
+            } else {
+              onNavClick?.(item.action)
             }
           }}
         >

@@ -2,6 +2,7 @@ import { useEffect, useCallback, useRef } from 'react'
 import styles from './ScrollStack.module.css'
 import PopularTours from '../PopularTours/PopularTours'
 import Advantages from '../Advantages/Advantages'
+import SearchTours from '../SearchTours/SearchTours'
 
 const tabs = [
   { id: 1, label: 'Популярные туры' },
@@ -9,7 +10,7 @@ const tabs = [
   { id: 3, label: 'Поиск туров' },
 ]
 
-const ScrollStack = ({ activeIndex, onActiveIndexChange, onActiveChange }) => {
+const ScrollStack = ({ activeIndex, onActiveIndexChange, onActiveChange, showAbout }) => {
   const contentRefs = useRef([])
   const isTransitioning = useRef(false)
 
@@ -36,34 +37,29 @@ const ScrollStack = ({ activeIndex, onActiveIndexChange, onActiveChange }) => {
   }, [onActiveChange, onActiveIndexChange])
 
   const handleWheel = useCallback((e) => {
-    // Скролл вниз
+    // Если открыт блок "О нас" — не переключаем скролл-блоки
+    if (showAbout) return;
+
     if (e.deltaY > 0) {
       if (activeIndex < 0) {
-        // Нет активных блоков — открываем первый
         e.preventDefault()
         goTo(0)
       } else if (canScrollDown(activeIndex)) {
-        // Есть куда скроллить внутри — не мешаем
         return
       } else if (activeIndex < tabs.length - 1) {
-        // Дошли до конца — переключаем блок
         e.preventDefault()
         goTo(activeIndex + 1)
       }
-    }
-    // Скролл вверх
-    else {
+    } else {
       if (activeIndex >= 0 && canScrollUp(activeIndex)) {
-        // Есть куда скроллить вверх внутри — не мешаем
         return
       } else if (activeIndex >= 0) {
         e.preventDefault()
         goTo(activeIndex - 1)
       }
     }
-  }, [activeIndex, goTo])
+  }, [activeIndex, goTo, showAbout])
 
-  // Свайпы для мобильных
   const touchStartY = useRef(0)
 
   const handleTouchStart = useCallback((e) => {
@@ -71,25 +67,26 @@ const ScrollStack = ({ activeIndex, onActiveIndexChange, onActiveChange }) => {
   }, [])
 
   const handleTouchEnd = useCallback((e) => {
+    // Если открыт блок "О нас" — не переключаем
+    if (showAbout) return;
+
     const deltaY = touchStartY.current - e.changedTouches[0].clientY
     const absDelta = Math.abs(deltaY)
 
-    if (absDelta < 30) return // слишком короткий свайп
+    if (absDelta < 30) return
 
     if (deltaY > 0) {
-      // Свайп вверх (хотим следующий блок)
       if (activeIndex < 0) {
         goTo(0)
       } else if (!canScrollDown(activeIndex) && activeIndex < tabs.length - 1) {
         goTo(activeIndex + 1)
       }
     } else {
-      // Свайп вниз (хотим предыдущий блок)
       if (activeIndex >= 0 && !canScrollUp(activeIndex)) {
         goTo(activeIndex - 1)
       }
     }
-  }, [activeIndex, goTo])
+  }, [activeIndex, goTo, showAbout])
 
   useEffect(() => {
     window.addEventListener('wheel', handleWheel, { passive: false })
@@ -108,12 +105,11 @@ const ScrollStack = ({ activeIndex, onActiveIndexChange, onActiveChange }) => {
 
   const handleTourSelect = (country) => {
     goTo(2)
-    console.log('Выбрана страна:', country)
   }
 
   return (
     <div className={styles.container}>
-      {/* Слой с закладками */}
+      {/* Закладки для скролл-блоков */}
       <div className={styles.labelsRow}>
         {tabs.map((tab, index) => (
           index <= activeIndex && (
@@ -130,29 +126,38 @@ const ScrollStack = ({ activeIndex, onActiveIndexChange, onActiveChange }) => {
         ))}
       </div>
 
-      {/* Блоки */}
+      {/* Скролл-блоки */}
       {tabs.map((tab, index) => {
         const isVisible = index <= activeIndex
 
         return (
-            <div
-              key={tab.id}
-              className={`${styles.tab} ${isVisible ? styles.visible : ''}`}
-              style={{
-                zIndex: index + 1,
-              }}
-            >
+          <div
+            key={tab.id}
+            className={`${styles.tab} ${isVisible ? styles.visible : ''}`}
+            style={{ zIndex: index + 1 }}
+          >
             <div
               className={styles.content}
               ref={(el) => (contentRefs.current[index] = el)}
             >
               {index === 0 && <PopularTours onTourSelect={handleTourSelect} />}
               {index === 1 && <Advantages />}
-              {index === 2 }
+              {index === 2 && <SearchTours />}
             </div>
           </div>
-        )}
-      )}
+        )
+      })}
+
+      {/* Блок "О нас" — отдельно, не скроллится */}
+      <div
+        className={`${styles.tab} ${styles.aboutTab} ${showAbout ? styles.visible : ''}`}
+        style={{ zIndex: 10 }}
+      >
+        <div className={styles.content}>
+          <h2 style={{ color: '#fff', paddingTop: '50px' }}>О нас</h2>
+          <p style={{ color: '#fff', paddingTop: '25px' }}>Информация о компании</p>
+        </div>
+      </div>
     </div>
   )
 }

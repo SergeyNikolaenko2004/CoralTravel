@@ -21,8 +21,8 @@
   border: none;
   border-radius: var(--radius-md);
   background: transparent;
-  color: var(--text-secondary);
-  font-size: 14px;
+  color: var(--text-primary);
+  font-size: 20px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.25s ease;
@@ -30,8 +30,7 @@
 }
 
 .navBtn:hover {
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .navBtn:active {

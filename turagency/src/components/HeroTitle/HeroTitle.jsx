@@ -14,12 +14,7 @@ const HeroTitle = ({ hidden }) => {
   return (
     <div className={`${styles.wrapper} ${visible ? styles.visible : ''} ${hidden ? styles.hidden : ''}`}>
       <div className={styles.glass}>
-        <h1 className={styles.title}>
-          Самые дешёвые туры <span className={styles.accent}>в Иркутске</span>
-        </h1>
-        <p className={styles.subtitle}>
-          Путешествуй по лучшим ценам с CoralTravel
-        </p>
+        <h1 className={styles.title}>Пример текста</h1>
       </div>
     </div>
   )
