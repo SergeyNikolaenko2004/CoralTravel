@@ -11,6 +11,12 @@ const App = () => {
   const [showFooter, setShowFooter] = useState(false)
   const [showAbout, setShowAbout] = useState(false)
 
+  const handleHomeClick = () => {
+    setActiveIndex(-1)
+    setShowFooter(false)
+    setShowAbout(false)
+  }
+
   const handleSearchClick = () => {
     setActiveIndex(2)
     setShowAbout(false)
@@ -26,14 +32,17 @@ const App = () => {
       setShowAbout(false)
     } else if (action === 'about') {
       setActiveIndex(-1)
-      setShowAbout(prev => !prev)  // Переключаем: открыт → закрыть, закрыт → открыть
+      setShowAbout(prev => !prev)
     }
   }
 
   return (
     <>
       <Hero />
-      <Header onSearchClick={handleSearchClick} />
+      <Header 
+        onSearchClick={handleSearchClick} 
+        onLogoClick={handleHomeClick} 
+      />
       <HeroTitle hidden={activeIndex >= 0 || showAbout} />
       <ScrollStack
         activeIndex={activeIndex}

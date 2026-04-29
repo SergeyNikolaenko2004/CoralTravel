@@ -2,11 +2,11 @@ import styles from './Header.module.css'
 
 const BASE_URL = import.meta.env.BASE_URL
 
-const Header = ({ onSearchClick }) => {
+const Header = ({ onSearchClick, onLogoClick }) => {
   return (
     <header className={styles.header}>
       {/* Логотип слева */}
-      <div className={styles.logo}>
+      <div className={styles.logo} onClick={onLogoClick} style={{ cursor: 'pointer' }}>
         <img src={`${BASE_URL}CoralTravel.png`} alt="CoralTravel" />
       </div>
 
